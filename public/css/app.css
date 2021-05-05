@@ -1,0 +1,82 @@
+body {
+    font-size: .875rem;
+}
+
+.imgbackground {
+    background: url(/images/marcmuller.jpg) no-repeat center top;
+    background-size: cover;
+    height: 300px;
+    width: 600px;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+@media(min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+body {
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+}
+
+.cover-container {
+    max-width: 42em;
+}
+
+.bg-dark {
+    background-color: #2187ec !important;
+}
+
+/*
+* Header
+*/
+
+.nav-masthead .nav-link {
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    border-bottom: 0.25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover, .nav-masthead .nav-link:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.25);
+}
+
+.nav-masthead .nav-link+.nav-link {
+    margin-left: 1rem;
+}
+
+.nav-masthead .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+/*
+* navbar 
+*/
+
+.navyjim {
+    background: rgb(216, 232, 241);
+}
+
+.tdbold {
+    font-weight: bold;
+}
+
+.profile {
+    font-size: 20px;
+}
+
+.equip {
+    font-size: 14px;
+}

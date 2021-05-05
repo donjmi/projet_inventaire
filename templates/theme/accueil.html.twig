@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr" class="h-100">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>Cover Template · Bootstrap v5.0</title>
+
+		<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/app.css') }}"/>
+	</head>
+	<body class="d-flex h-100 text-center text-white bg-dark">
+
+		<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+			<header class="mb-auto">
+				<div>
+					<h3 class="float-md-start mb-0">Ville de Pantin</h3>
+					<nav class="nav nav-masthead justify-content-center float-md-end">
+						<a class="nav-link text-white" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+						{% if app.user %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="nav-link text-white" href="#">ajout</a>
+							{% endif %}
+							<a class="nav-link text-white" href="{{ path('app_login') }}">Profil</a>
+							<a class="nav-link text-white" href="{{ path('app_logout') }}">Déconnexion</a>
+							<a class="nav-link text-warning">{{ app.user.username }}</a>
+						{% else %}
+							<a class="nav-link text-white" href="{{ path('app_login') }}">Connexion</a>
+							<a class="nav-link text-white" href="{{ path('app_register') }}">Créer un compte</a>
+						{% endif %}
+					</nav>
+				</div>
+			</header>
+			{% block body %}{% endblock %}
+			<footer class="mt-auto text-white-50 mb-1">
+				<p>Gestion de l'inventaire
+					<a href="https://getbootstrap.com/" class="text-white">Ville de pantin</a>, by
+					<a href="https://twitter.com/mdo" class="text-white">JLD/PC</a>.</p>
+			</footer>
+		</div>
+	</body>
+</html>
