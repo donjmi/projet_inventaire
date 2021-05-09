@@ -1,0 +1,12 @@
+{% extends 'theme/accueil.html.twig' %}
+
+{% block title %}Ajout Equipement
+{% endblock %}
+
+{% block body %}
+	<h1>Ajouter un équipement</h1>
+
+	{{ include('equipment/_form.html.twig') }}
+
+	<a href="{{ path('equipment_index') }}">back to list</a>
+{% endblock %}
