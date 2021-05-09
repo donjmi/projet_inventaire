@@ -2,15 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\StateRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=StateRepository::class)
  */
-class Category
+class State
 {
     /**
      * @ORM\Id
@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=Equipment::class, mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Equipment::class, mappedBy="state")
      */
     private $equipment;
 
@@ -69,7 +69,7 @@ class Category
     {
         if (!$this->equipment->contains($equipment)) {
             $this->equipment[] = $equipment;
-            $equipment->setCategory($this);
+            $equipment->setState($this);
         }
 
         return $this;
@@ -79,8 +79,8 @@ class Category
     {
         if ($this->equipment->removeElement($equipment)) {
             // set the owning side to null (unless already changed)
-            if ($equipment->getCategory() === $this) {
-                $equipment->setCategory(null);
+            if ($equipment->getState() === $this) {
+                $equipment->setState(null);
             }
         }
 

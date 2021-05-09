@@ -2,15 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\PlanningRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=CategoryRepository::class)
+ * @ORM\Entity(repositoryClass=PlanningRepository::class)
  */
-class Category
+class Planning
 {
     /**
      * @ORM\Id
@@ -20,12 +21,13 @@ class Category
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=4, nullable=true)
+     * * @Assert\Regex("/^[0-9]{4}/")
      */
-    private $name;
+    private $year;
 
     /**
-     * @ORM\OneToMany(targetEntity=Equipment::class, mappedBy="category", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Equipment::class, mappedBy="planning")
      */
     private $equipment;
 
@@ -34,9 +36,10 @@ class Category
         $this->equipment = new ArrayCollection();
     }
 
+
     public function __toString()
     {
-        return $this->name;
+        return $this->year;
     }
 
 
@@ -45,14 +48,14 @@ class Category
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getYear(): ?string
     {
-        return $this->name;
+        return $this->year;
     }
 
-    public function setName(string $name): self
+    public function setYear(?string $year): self
     {
-        $this->name = $name;
+        $this->year = $year;
 
         return $this;
     }
@@ -69,7 +72,7 @@ class Category
     {
         if (!$this->equipment->contains($equipment)) {
             $this->equipment[] = $equipment;
-            $equipment->setCategory($this);
+            $equipment->setPlanning($this);
         }
 
         return $this;
@@ -79,8 +82,8 @@ class Category
     {
         if ($this->equipment->removeElement($equipment)) {
             // set the owning side to null (unless already changed)
-            if ($equipment->getCategory() === $this) {
-                $equipment->setCategory(null);
+            if ($equipment->getPlanning() === $this) {
+                $equipment->setPlanning(null);
             }
         }
 
