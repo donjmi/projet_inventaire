@@ -59,7 +59,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             // do anything else you need here, like send an email
-
+            $this->addFlash('success2', 'Votre compte a été créé, vous allez recevoir un email !');
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,

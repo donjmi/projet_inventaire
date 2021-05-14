@@ -65,6 +65,11 @@ class Equipment
      */
     private $amount;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $room;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -179,6 +184,18 @@ class Equipment
     public function setAmount(?string $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getRoom(): ?string
+    {
+        return $this->room;
+    }
+
+    public function setRoom(?string $room): self
+    {
+        $this->room = $room;
 
         return $this;
     }

@@ -21,7 +21,7 @@
 							{% if is_granted('ROLE_ADMIN') %}
 								<a class="nav-link text-white" href="#">ajout</a>
 							{% endif %}
-							<a class="nav-link text-white" href="{{ path('app_login') }}">Profil</a>
+							<a class="nav-link text-white" href="{{ path('user_index') }}">Profil</a>
 							<a class="nav-link text-white" href="{{ path('app_logout') }}">Déconnexion</a>
 							<a class="nav-link text-warning">{{ app.user.username }}</a>
 						{% else %}
@@ -30,6 +30,21 @@
 						{% endif %}
 					</nav>
 				</div>
+				{% for type, messages in app.flashes(['success', 'error', 'info'])  %}
+					{% for message in messages %}
+						<div class="alert alert-{{ type }}" role="alert">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endfor %}
+
+				{% for type, messages in app.flashes(['success2'])  %}
+					{% for message in messages %}
+						<div class="alert alert-{{ type }}" role="alert">
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endfor %}
 			</header>
 			{% block body %}{% endblock %}
 			<footer class="mt-auto text-white-50 mb-1">

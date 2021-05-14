@@ -61,10 +61,9 @@ class AppFixtures extends Fixture
 
         // tableau préparation données fixtures 
         $categories = ['Armoire', 'Bureau', 'Chaise', 'Fauteuil', 'Equipement sportif', 'Matériel de santé', 'Matériel crèche', 'FIPHP'];
-        $buldings = ['Centre administraif', 'Hotel de ville', 'CTM', 'Atelier', 'Garage', 'MDQ 4chemins', 'MDQ courtillières', 'Crèches courtillières'];
+        $buldings = ['Centre administratif', 'Hotel de ville', 'CTM', 'Atelier', 'Garage', 'MDQ 4chemins', 'MDQ courtillières', 'Crèches courtillières'];
         $plannings = ['', '2022', '2023', '2024', '2025', '2026', '2027'];
-        $states = ['Bon', 'Moyen', 'Mauvais', 'A changer urgence'];
-        $desc = ['Armoire haute', 'Armoire basse', 'Fauteuil de bureu', 'réfrigérateur', 'Plaque de cuisson', 'lits bébé', 'panier de basket', 'matériel dentiste'];
+        $states = ['Bon', 'Moyen', 'Mauvais', 'A changer d\'urgence'];
 
         // fixtures categories
         foreach ($categories as $key => $item) {
@@ -113,7 +112,8 @@ class AppFixtures extends Fixture
 
             $equipment = new Equipment();
             $equipment->setAmount('1');
-            $equipment->setDescription($faker->text($maxNbChars = 100));
+            // $equipment->setDescription($faker->text($maxNbChars = 100));
+            $equipment->setDescription($faker->randomElement(['Armoire haute', 'Armoire basse', 'Fauteuil de bureu', 'Réfrigérateur', 'Plaque de cuisson', 'Lits bébé', 'Panier de basket', 'matériel dentiste']));
             $equipment->setCategory($catego);
             $equipment->setState($stat);
             $equipment->setPlanning($shed);

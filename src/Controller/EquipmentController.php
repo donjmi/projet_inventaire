@@ -36,8 +36,11 @@ class EquipmentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $equipment->setUser($this->getUser());
             $entityManager->persist($equipment);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Votre équipement a bien été ajouté !');
 
             return $this->redirectToRoute('equipment_index');
         }
@@ -69,6 +72,8 @@ class EquipmentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success', 'Votre équipement a bien été modifié !');
+
             return $this->redirectToRoute('equipment_index');
         }
 
@@ -83,10 +88,12 @@ class EquipmentController extends AbstractController
      */
     public function delete(Request $request, Equipment $equipment): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$equipment->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $equipment->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($equipment);
             $entityManager->flush();
+
+            $this->addFlash('info', 'Votre équipement a bien été ajouté !');
         }
 
         return $this->redirectToRoute('equipment_index');

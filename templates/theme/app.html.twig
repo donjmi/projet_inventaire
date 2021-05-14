@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>app.html.twig</title>
+
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"/>
+		<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}"/>
+		<script src="https://kit.fontawesome.com/3ea355cd9b.js" crossorigin="anonymous"></script>
+
+
+	</head>
+	<body>
+		<div class="sidenav">
+			<a href="{{ path('app_home') }}">Accueil</a>
+			<a class="nav-link" href="{{ path('user_index') }}">Profil</a>
+			<hr>
+			<article class="text-uppercase font-weight-bold">
+				Equipement:
+			</article>
+			<a href="{{ path('equipment_index') }}">Ma liste</a>
+			<a href="{{ path('equipment_new') }}">Ajouter un équipement</a>
+		</div>
+		<div class="main">
+			{% include "include/navbar_app.html.twig" %}
+			{% block body %}{% endblock %}
+
+		</div>
+		<!-- Bootstrap core JS-->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
+		<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+		<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+		<script src="{{ asset('/js/scripts.js') }}"></script>
+	</body>
+</html>

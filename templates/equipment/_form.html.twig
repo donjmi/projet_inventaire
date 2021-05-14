@@ -1,4 +1,37 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block body %}
+	{{ form_start(form) }}
+	<div class="row">
+		<div class="col-md-4 font-weight-bold">
+			{{ form_row(form.bulding) }}
+		</div>
+		<div class="col-md-4 font-weight-bold">
+			{{ form_row(form.room, {'attr': {'placeholder': 'N° Bureau, Salle ...'}}) }}
+		</div>
+		<div class="col-md-4 font-weight-bold">
+			{{ form_row(form.category) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2 font-weight-bold">
+			{{ form_row(form.amount) }}
+		</div>
+		<div class="col-md-7 font-weight-bold">
+			{{ form_row(form.description, {'attr': {'placeholder': 'Ex: Bureau ovale'}}) }}
+		</div>
+		<div class="col-md-3">
+			{{ form_row(form.state) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 font-weight-bold">
+			{{ form_row(form.planning) }}
+		</div>
+	</div>
+	<div class="row justify-content-center">
+		<div class="col-md-12">
+			<button class="btn btn-primary btn-block">{{ button_label|default('Ajouter') }}</button>
+		</div>
+	</div>
+	{{ form_end(form) }}
+
+{% endblock %}

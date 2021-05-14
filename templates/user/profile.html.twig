@@ -1,0 +1,32 @@
+{% extends 'theme/app.html.twig' %}
+
+{% block title %}Mon profile
+{% endblock %}
+
+{% block body %}
+	<div class="container profile">
+		<div class="card border-primary mb-3 align-items-center center-div" style="max-width: 40rem; margin-top: 100px">
+			<div class="card-header h4">{{ app.user.firstname }}
+				{{ app.user.lastname }}
+			</div>
+			<div class="up">(dernière mise à jour le
+				{{ app.user.updatedAt |date('d/m/y H:m:s', 'Europe/Paris') }}
+				)
+			</div>
+			<div class="card-body">
+				<h5 class="card-title">Email :
+					{{ app.user.email }}</h5>
+				<div class="card-text">
+					<a href="{{ path('user_profil_update') }}">Modifier mon profile</a>
+
+					|
+					<a href="{{ path('app_forgot_password_request') }}">Changer mon mot de passe</a>
+				</div>
+				<small>vous avez enregistré
+					{{ app.user.equipment |length }}
+					equipement(s)</small>
+
+			</div>
+		</div>
+	</div>
+</div>{% endblock %}

@@ -8,10 +8,11 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
+ * @UniqueEntity(fields={"email"}, message="Email déjà existant")
  */
 class User implements UserInterface
 {
@@ -24,6 +25,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\Regex(
+     *     pattern="#@ville-pantin.fr$#",
+     *     message="Saississez une adresse email ville de pantin"
+     * )
      */
     private $email;
 
@@ -72,6 +77,7 @@ class User implements UserInterface
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->equipment = new ArrayCollection();
+        date_default_timezone_set("Europe/Madrid");
     }
 
     public function __toString()

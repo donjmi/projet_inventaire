@@ -4,36 +4,54 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Equipment index</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Description</th>
-				<th>CreatedAt</th>
-				<th>UpdatedAt</th>
-				<th>actions</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for equipment in equipment %}
-				<tr>
-					<td>{{ equipment.id }}</td>
-					<td>{{ equipment.description }}</td>
-					<td>{{ equipment.createdAt ? equipment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>{{ equipment.updatedAt ? equipment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-					<td>
-						<a href="{{ path('equipment_show', {'id': equipment.id}) }}">show</a>
-						<a href="{{ path('equipment_edit', {'id': equipment.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="5">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+	<div class="container profile">
+		<div class="card border-primary mb-3 align-items-center center-div pl-4 pr-4" style="max-width: 60rem; margin-top: 100px">
+			<h1 class="h3 mb-1">Ma liste mobilier/matériel
+				<small>({{ app.user.equipment |length }})</small>
+			</h1>
+			<hr class="sous-hr mb-5">
+			<table id="example" class="display pl-4 pr-4">
+				<thead>
+					<tr>
+						<th>Qté</th>
+						<th>Categorie</th>
+						<th>Description</th>
+						<th>salle</th>
+						<th>Etat</th>
+						<th>Crée le</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for equipment in app.user.equipment %}
+						<tr class="tabfont">
+							<td>{{ equipment.amount }}</td>
+							<td>{{ equipment.category }}</td>
+							<td>{{ equipment.description }}</td>
+							<td>{{ equipment.room }}</td>
+							<td>{{ equipment.state }}</td>
+							<td style="font-size: 12px;">{{ equipment.createdAt ? equipment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+							<td>
+								<a href="{{ path('equipment_show', {'id': equipment.id}) }}">
+									<i class="far fa-eye"></i>
+								</a>
+								<a href="{{ path('equipment_edit', {'id': equipment.id}) }}">
+									<i class="fa fa-pencil fa-fw"></i>
+								</a>
+								<a href="{{ path('equipment_delete', {'id': equipment.id}) }}">
+									<i class="far fa-trash-alt"></i>
+								</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="5">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 
-	<a href="{{ path('equipment_new') }}">Create new</a>
+			<a href="{{ path('equipment_new') }}">Create new</a>
+		</div>
+	</div>
 {% endblock %}

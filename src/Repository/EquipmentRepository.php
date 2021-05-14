@@ -47,4 +47,14 @@ class EquipmentRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findAllOrder(): array
+    {
+        return $this->createQueryBuilder('e')
+            // ->addSelect('e')
+            // ->join('e.building', 'b')
+            ->orderBy('e.id', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

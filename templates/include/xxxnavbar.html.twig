@@ -1,0 +1,20 @@
+<header class="mb-auto bg-dark fixed-top">
+	<div>
+		<h3 class="float-md-start mb-0">Ville de Pantinrr</h3>
+		{# <nav class="navbar nav-masthead navbar-fixed-top justify-content-center float-md-end"> #}
+		<nav class="navbar nav-masthead justify-content-center navbar-fixed-top">
+			<a class="nav-link text-white" aria-current="page" href="{{ path('app_home') }}">Accueil</a>
+			{% if app.user %}
+				{% if is_granted('ROLE_ADMIN') %}
+					<a class="nav-link text-white" href="#">ajout</a>
+				{% endif %}
+				<a class="nav-link text-white" href="{{ path('user_index') }}">Profil</a>
+				<a class="nav-link text-white" href="{{ path('app_logout') }}">Déconnexion</a>
+				<a class="nav-link text-warning">{{ app.user.username }}</a>
+			{% else %}
+				<a class="nav-link text-white" href="{{ path('app_login') }}">Connexion</a>
+				<a class="nav-link text-white" href="{{ path('app_register') }}">Créer un compte</a>
+			{% endif %}
+		</nav>
+	</div>
+</header>

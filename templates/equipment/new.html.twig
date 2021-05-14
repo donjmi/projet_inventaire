@@ -1,12 +1,17 @@
-{% extends 'theme/accueil.html.twig' %}
+{% extends 'theme/app.html.twig' %}
 
-{% block title %}Ajout Equipement
+{% block title %}Ajoutez Equipement
 {% endblock %}
 
 {% block body %}
-	<h1>Ajouter un équipement</h1>
+	<div class="container profile">
+		<div class="card border-primary mb-3 align-items-center center-div" style="max-width: 60rem; margin-top: 100px">
+			<h1 class="h3 mb-1">Ajouter un équipement</h1>
+			<hr class="sous-hr mb-5">
 
-	{{ include('equipment/_form.html.twig') }}
+			{{ include('equipment/_form.html.twig') }}
 
-	<a href="{{ path('equipment_index') }}">back to list</a>
+			<a class="mt-4" href="{{ path('equipment_index') }}">back to list</a>
+		</div>
+	</div>
 {% endblock %}
