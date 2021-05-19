@@ -4,11 +4,16 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Edit Equipment</h1>
+	<div class="container profile">
+		<div class="card border-primary mb-3 align-items-center center-div" style="max-width: 60rem; margin-top: 100px">
+			<h1 class="h3 mb-1">Modifiez l'équipement</h1>
+			<hr class="sous-hr mb-5">
 
-	{{ include('equipment/_form.html.twig', {'button_label': 'Update'}) }}
+			{{ include('equipment/_form.html.twig', {'button_label': 'Update'}) }}
 
-	<a href="{{ path('equipment_index') }}">back to list</a>
+			<a href="{{ path('equipment_index') }}">Revenir à la liste</a>
 
-	{{ include('equipment/_delete_form.html.twig') }}
+			{{ include('equipment/_delete_form.html.twig') }}
+		</div>
+	</div>
 {% endblock %}

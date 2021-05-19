@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use App\Repository\EquipmentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EquipmentRepository::class)
+ * @Vich\Uploadable
  */
 class Equipment
 {
@@ -69,6 +74,19 @@ class Equipment
      * @ORM\Column(type="string", length=100, nullable=true)
      */
     private $room;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageName;
+
+    /**
+     * @Vich\UploadableField(mapping="equipments_images", fileNameProperty="imageName")
+     * @Assert\Image(maxSize="8M")
+     * 
+     * @var File|null
+     */
+    private $imageFile;
 
     public function __construct()
     {
@@ -198,5 +216,34 @@ class Equipment
         $this->room = $room;
 
         return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }

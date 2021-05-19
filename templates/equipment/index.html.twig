@@ -18,7 +18,8 @@
 						<th>Description</th>
 						<th>salle</th>
 						<th>Etat</th>
-						<th>Crée le</th>
+						<th>date</th>
+						<th>Photo</th>
 						<th>actions</th>
 					</tr>
 				</thead>
@@ -29,11 +30,27 @@
 							<td>{{ equipment.category }}</td>
 							<td>{{ equipment.description }}</td>
 							<td>{{ equipment.room }}</td>
-							<td>{{ equipment.state }}</td>
+							{% if  equipment.state == "A changer d'urgence" %}
+								<td class="text-danger">{{ equipment.state }}</td>
+							{% elseif  equipment.state == "Mauvais" %}
+								<td class="text-warning">{{ equipment.state }}</td>
+							{% else %}
+								<td>{{ equipment.state }}</td>
+							{% endif %}
+
+
 							<td style="font-size: 12px;">{{ equipment.createdAt ? equipment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
 							<td>
-								<a href="{{ path('equipment_show', {'id': equipment.id}) }}">
-									<i class="far fa-eye"></i>
+								{% if equipment.imagename %}
+									{# <img src="{{vich_uploader_asset(equipment, 'imageFile') }}" style="width: 75px; height: 75px;"> #}
+									<img src="{{vich_uploader_asset(equipment, 'imageFile')|imagine_filter('biensxs') }}">
+								{% endif %}
+							</td>
+							{# <td><img src="{{ vich_uploader_asset(equipment, 'imageFile') | imagine_filter('biensXs') }}" alt=""/></td> #}
+							{# <td><img src="{{ vich_uploader_asset(equipment, 'imageFile') ? vich_uploader_asset(equipment, 'imageFile')| imagine_filter('biensXs') : "pas de photo" }}" alt=""/></td> #}
+							{# <td><img src="{{ equipment.imageName ? vich_uploader_asset(equipment, 'imageFile') | imagine_filter('biensXs') : "pas de photo" }}"/></td> #}
+								<td>
+									<a href="{{ path('equipment_show', {'id': equipment.id}) }}"> <i class="far fa-eye"></i>
 								</a>
 								<a href="{{ path('equipment_edit', {'id': equipment.id}) }}">
 									<i class="fa fa-pencil fa-fw"></i>
