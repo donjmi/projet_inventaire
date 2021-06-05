@@ -27,3 +27,15 @@ $(document).ready(function () {
         paging: false
     });
 });
+
+$(document).ready(function () {
+    $('#example2').DataTable({
+        responsive: true,
+        paging: false,
+        info: false,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+});

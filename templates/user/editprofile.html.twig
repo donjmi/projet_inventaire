@@ -1,16 +1,23 @@
-{% extends 'theme/app.html.twig' %}
+{% extends 'theme/apps.html.twig' %}
 
 {% block title %}Modifier profile
 {% endblock %}
 
+
+{% block titlePage %}Modifier mon profile
+{% endblock %}
+
 {% block body %}
-	<div class="container profile">
-		<div class="card border-primary mb-3 align-items-center center-div" style="max-width: 40rem; margin-top: 100px">
-			{{ form_start(form) }}
-			{{ form_row(form.firstname) }}
-			{{ form_row(form.lastname) }}
-			<button class="btn btn-primary btn-block mt-3 mb-3">{{ button_label|default('Modifier') }}</button>
-			{{ form_end(form) }}
-		</div>
+	{{ form_start(form) }}
+	<div class="row">
+		<div class="col-md-6">{{ form_row(form.firstname) }}</div>
+		<div class="col-md-6">{{ form_row(form.lastname) }}</div>
 	</div>
+	<button class="btn btn-primary btn-block mt-3 mb-3">{{ button_label|default('Modifier') }}</button>
+	{{ form_end(form) }}
+
+	<p>
+		<a class="text-black" href="{{ path('user_index') }}">Revenez à votre profil</a>
+	</p>
+
 {% endblock %}

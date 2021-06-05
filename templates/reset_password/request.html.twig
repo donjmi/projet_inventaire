@@ -1,13 +1,15 @@
-{% extends 'theme/accueil.html.twig' %}
+{% extends 'theme/apps.html.twig' %}
 
 {% block title %}Reset your password
+{% endblock %}
+
+{% block titlePage %}Modifier votre mot de passe
 {% endblock %}
 
 {% block body %}
 	{% for flashError in app.flashes('reset_password_error') %}
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
-	<h1>Modifier votre mot de passe</h1>
 
 	{{ form_start(requestForm) }}
 	{{ form_row(requestForm.email) }}
@@ -19,4 +21,7 @@
 
 	<button class="btn btn-success btn-block">Modifier</button>
 	{{ form_end(requestForm) }}
+	<p>
+		<a class="text-black" href="{{ path('user_index') }}">Revenez à votre profil</a>
+	</p>
 {% endblock %}

@@ -1,0 +1,80 @@
+<html>
+	<head>
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css"/>
+		<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"/>
+		<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		<script src="https://kit.fontawesome.com/3ea355cd9b.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="{{ asset('/css/style2.css') }}"/>
+	</head>
+	<body>
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="custom-menu">
+					<button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
+				</div>
+				<div class="img bg-wrap text-center py-4" style="">
+					<div class="user-logo">
+						<div class="img" style="background-image: url({{ asset('/images/Pantin.png') }});"></div>
+						<h3>{{ app.user.firstname }}</h3>
+					</div>
+				</div>
+				{# <h3>Ville de Pantin</h3> #}
+				<ul class="list-unstyled components mb-5">
+					<li class="active">
+						<a href="#">
+							<span class="fa fa-home mr-3"></span>
+							Home</a>
+					</li>
+					<li>
+						<a href="{{ path('user_index') }}">
+							<span class="fas fa-user-alt mr-3 notif"></span>
+							Mon profil</a>
+					</li>
+					<li>
+						<a href="{{ path('app_logout') }}">
+							<span class="fas fa-sign-out-alt mr-3"></span>
+							Déconnexion</a>
+					</li>
+					<li>
+						<a href="#"></a>
+					</li>
+					<li>
+						<a href="{{ path('equipment_index') }}">
+							<span class="fa fa-list mr-3 notif">
+								<small class="d-flex align-items-center justify-content-center">{{ app.user.equipment |length }}</small>
+							</span>
+							Inventaire</a>
+					</li>
+					<li>
+						<a href="{{ path('equipment_new') }}">
+							<span class="fa fa-cart-plus mr-3"></span>
+							Ajouter</a>
+					</li>
+				</ul>
+			</nav>
+			<!-- Page Content  -->
+			<div id="content" class="p-4 p-md-5 pt-5">
+				<h2 class="mb-4">
+					{% block titlePage %}title
+					{% endblock %}
+				</h2>
+				{% block body %}{% endblock %}
+
+				<div class="card border-primary mb-3 align-items-center center-div"/>
+			</div>
+		</div>
+		<script src="{{ asset('js/jquery.min.js') }}"></script>
+		<script src="{{ asset('js/popper.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/main.js') }}"></script>
+		<script src="{{ asset('js/scripts.js') }}"></script>
+		{% block javascript %}{% endblock %}
+	</body>
+</html>
